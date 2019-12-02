@@ -20,9 +20,20 @@ func AdventOfCode(args []string) error {
 	puzzles := []func() error{
 		nineteen.One,
 	}
+
 	if interactive {
 		return interaction(puzzles)
 	}
+
+	fmt.Println("Running all puzzles")
+
+	for i, puzzle := range puzzles {
+		err := puzzle()
+		if err != nil {
+			fmt.Printf("unable to run puzzle %d: %s", i, err.Error())
+		}
+	}
+
 	return nil
 }
 
