@@ -15,7 +15,7 @@ func One() error {
 	fmt.Println("Puzzle one")
 	fmt.Println("-----------")
 
-	data, err := util.ImportInts("nineteen/one_data.txt")
+	data, err := util.ImportInts("nineteen/one_data.txt", "\n")
 	if err != nil {
 		return errors.Wrap(err, "unable to import data")
 	}

@@ -19,6 +19,7 @@ func AdventOfCode(args []string) error {
 	debug, _ = strconv.ParseBool(args[1])
 	puzzles := []func() error{
 		nineteen.One,
+		nineteen.Two,
 	}
 
 	if interactive {
@@ -69,7 +70,10 @@ func interaction(puzzles []func() error) error {
 					return errors.Wrap(err, "unable to process puzzle selection")
 				}
 			}
-			return puzzles[i-1]()
+			err = puzzles[i-1]()
+			if err != nil {
+				return errors.Wrapf(err, "failed to calculate puzzle %d", i)
+			}
 		}
 	}
 }

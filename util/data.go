@@ -12,7 +12,7 @@ import (
 )
 
 // ImportInts a file
-func ImportInts(path string) (ints []int, err error) {
+func ImportInts(path string, delim string) (ints []int, err error) {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, errors.Wrap(err, "unable to read credential file")
@@ -20,7 +20,7 @@ func ImportInts(path string) (ints []int, err error) {
 
 	buf := bytes.NewBuffer(data)
 	for {
-		strWithDelim, err := buf.ReadString([]byte("\n")[0])
+		strWithDelim, err := buf.ReadString([]byte(delim)[0])
 		if err != nil {
 			if err == io.EOF {
 				break
@@ -28,7 +28,7 @@ func ImportInts(path string) (ints []int, err error) {
 			return nil, errors.Wrap(err, "unable to readstring")
 		}
 
-		str := strings.TrimSuffix(strWithDelim, "\n")
+		str := strings.TrimSuffix(strWithDelim, delim)
 
 		i64, err := strconv.ParseInt(str, 10, 0)
 		if err != nil {
