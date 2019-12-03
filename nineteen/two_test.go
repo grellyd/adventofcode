@@ -6,7 +6,7 @@ import (
 	"github.com/grellyd/adventofcode/nineteen"
 )
 
-func TestTwo(t *testing.T) {
+func TestTwoPartOne(t *testing.T) {
 	var tests = []struct {
 		input  []int
 		ip     int
